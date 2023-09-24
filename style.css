@@ -1,0 +1,116 @@
+:root {
+  --dark-light: #f1ece6;
+  --blue: #76b7cd;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+header {
+  background-color: #f1ece6;
+}
+img.logo {
+  width: 230.769px;
+  height: 60px;
+  padding: 1rem;
+}
+
+form {
+  margin: auto;
+  display: flex;
+  background-color: var(--dark-light);
+  width: 473px;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border-radius: 50px;
+}
+
+input[type="text"] {
+  flex: 1;
+  border: none;
+  background: var(--dark-light);
+  border-radius: 50px;
+  padding: 1rem;
+}
+input[type="submit"] {
+  border: none;
+  background: #2e2922;
+  border-radius: 0 50px 50px 0;
+  color: white;
+  font-weight: 600;
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #e99a2b;
+}
+.task-input {
+  margin-top: 1rem;
+}
+
+.task-list {
+  margin: 20px auto;
+  width: 473px;
+  border-radius: 50px;
+  background-color: var(--dark-light);
+  padding: 1rem;
+}
+.task-list ul {
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+}
+
+.task-list ul li {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  border-bottom: 2px solid var(--blue);
+}
+.task-list ul li::before {
+  content: "";
+  background-image: url(assets/unchecked.png);
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+
+.task-list ul li.checked::before {
+  content: "";
+  background-image: url(assets/check-circle.png);
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  padding: 10px;
+
+}
+.task-list ul li.checked{
+  text-decoration-line: line-through;
+}
+.task-list ul li::after {
+  content: "";
+  background-image: url(assets/delete-outline.png);
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  padding: 10px;
+  cursor: pointer;
+}
+.clear-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: red;
+  justify-content: flex-end;
+  font-weight: 600;
+  gap: 2px;
+}

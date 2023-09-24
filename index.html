@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img class="logo" src="assets/To-Do-Logo 1.png" alt="">
+        </div>
+    </header>
+    <section class="task-input">
+        <form action="">
+            <input type="text" name="" id="" placeholder="What do you need to do?">
+            <input type="submit" value="Add">
+        </form>
+    </section>
+
+
+    <section class="task-list">
+        <ul>
+            <li class="checked"> Task-1 </li>
+            <li> Task-1 </li>
+            <li> Task-1 </li>
+            <li> ask-1 </li>
+
+
+        </ul>
+        <div class="clear-btn">
+            <svg width="28" height="34" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.4545 11.1273L13.9091 9.58182L7.72727 15.7636L1.54545 9.58182L0 11.1273L6.18182 17.3091L0 23.4909L1.54545 25.0364L7.72727 18.8545L13.9091 25.0364L15.4545 23.4909L9.27273 17.3091L15.4545 11.1273ZM24.7273 0H9.27273C7.57273 0 6.18182 1.39091 6.18182 3.09091V7.72727H9.27273V4.63636H24.7273V29.3636H9.27273V26.2727H6.18182V30.9091C6.18182 32.6091 7.57273 34 9.27273 34H24.7273C26.4273 34 27.8182 32.6091 27.8182 30.9091V3.09091C27.8182 1.39091 26.4273 0 24.7273 0Z"
+                    fill="red" />
+            </svg>
+
+            <span>Clear Completed</span>
+        </div>
+    </section>
+<script src="script.js"></script>
+</body>
+
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do List</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .task {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+            .task input[type="checkbox"] {
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>To-Do List</h1>
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="Add a task">
+                <button type="submit">Add Task</button>
+            </form>
+            <div id="taskList"></div>
+        </div>
+    
+        <script>
+            // Function to retrieve tasks from local storage
+            function getTasks() {
+                console.log(JSON.parse(localStorage.getItem('tasks')) || []);
+                return JSON.parse(localStorage.getItem('tasks')) || [];
+            }
+    
+            // Function to save tasks to local storage
+            function saveTasks(tasks) {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+    
+            // Function to display tasks on the page
+            function displayTasks() {
+                const taskList = document.getElementById('taskList');
+                taskList.innerHTML = '';
+                const tasks = getTasks();
+                
+                tasks.forEach((task, index) => {
+                    const taskDiv = document.createElement('div');
+                    taskDiv.classList.add('task');
+                    taskDiv.innerHTML = `
+                        <input type="checkbox" id="task_${index}">
+                        <label for="task_${index}">${task}</label>
+                        <button class="delete-btn" data-index="${index}">Delete</button>
+                    `;
+                    taskList.appendChild(taskDiv);
+                });
+    
+                // Attach event listeners to delete buttons
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const index = e.target.getAttribute('data-index');
+                        tasks.splice(index, 1); // Remove the task from the array
+                        saveTasks(tasks); // Update local storage
+                        displayTasks(); // Refresh the task list
+                    });
+                });
+            }
+    
+            // Initial display of tasks
+            displayTasks();
+    
+            // Handle form submission
+            const taskForm = document.getElementById('taskForm');
+            taskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const taskInput = document.getElementById('taskInput');
+                const taskText = taskInput.value.trim();
+                
+                if (taskText === '') {
+                    alert('Please enter a task.');
+                    return;
+                }
+    
+                const tasks = getTasks();
+                tasks.push(taskText);
+                saveTasks(tasks);
+                taskInput.value = ''; // Clear the input field
+                displayTasks(); // Refresh the task list
+            });
+        </script>
+    </body>
+    </html>
+     -->
