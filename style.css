@@ -75,36 +75,25 @@ input[type="submit"]:hover {
 
   border-bottom: 2px solid var(--blue);
 }
-.task-list ul li::before {
-  content: "";
-  background-image: url(assets/unchecked.png);
-  height: 50px;
-  width: 50px;
+
+
+.uncheck {
+  /* background-image: url(assets/unchecked.png); */
   background-repeat: no-repeat;
   padding: 10px;
+  height: 30px;
+  width: 30px;
 }
 
-.task-list ul li.checked::before {
-  content: "";
-  background-image: url(assets/check-circle.png);
-  height: 50px;
-  width: 50px;
+.check{
+  /* background-image: url(assets/check-circle.png); */
   background-repeat: no-repeat;
   padding: 10px;
+  height: 30px;
+  width: 30px;
+} 
 
-}
-.task-list ul li.checked{
-  text-decoration-line: line-through;
-}
-.task-list ul li::after {
-  content: "";
-  background-image: url(assets/delete-outline.png);
-  height: 50px;
-  width: 50px;
-  background-repeat: no-repeat;
-  padding: 10px;
-  cursor: pointer;
-}
+
 .clear-btn {
   cursor: pointer;
   display: flex;
