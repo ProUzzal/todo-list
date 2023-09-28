@@ -17,27 +17,16 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
     taskListUL.innerHTML = '';
 })
 
-
-'I have to complete this task in sha allah'
 //delete single items
-const deleteSingleItem = function (deleteBtnImg, task) {
-    console.log(deleteBtnImg);
+const deleteSingleItem = function (deleteBtnImg, obj, id) {
     const taskArr = getTaskArr();
-    // console.log(taskArr);
+    console.log(taskArr);
 
-    deleteBtnImg.addEventListener('click', () => {
+    deleteBtnImg.addEventListener('click', (e) => {
+        const newArr = taskArr.filter((item) => item.id !== obj.id);
+        taskSave(newArr);
+        taskDisplay();
 
-        if (taskArr.indexOf(task) != -1) {
-
-            taskArr.splice(taskArr.indexOf(task), 1);
-
-            // console.log(task.parentNode);
-
-            // console.log(taskArr);
-            localStorage.setItem('allTasks', JSON.stringify(taskArr));
-
-            taskDisplay();
-        }
     }, false)
 
 
@@ -79,7 +68,6 @@ const controlTask = function () {
 const taskDisplay = function () {
     taskListUL.innerHTML = '';
     const allTaskObj = getTaskArr();
-
     allTaskObj.forEach((taskObj) => {
         const li = document.createElement('li');
         const checkImg = document.createElement('img');
@@ -104,14 +92,15 @@ const taskDisplay = function () {
         li.appendChild(span);
         li.appendChild(deleteImg);
         taskListUL.appendChild(li);
-        deleteSingleItem(deleteImg);
+        console.log(taskObj.id);
+        deleteSingleItem(deleteImg, taskObj, taskObj.id);
 
-         // Set up event listener to toggle task status when clicked
+        // Set up event listener to toggle task status when clicked
         checkImg.addEventListener('click', () => {
             taskObj.status = (taskObj.status === 'checked') ? 'unchecked' : 'checked';
             taskSave(allTaskObj); // Save updated task status to local storage
             taskDisplay(); // Refresh the displayed task list
-            
+
         })
     })
     controlTask()
@@ -120,8 +109,8 @@ const taskDisplay = function () {
 
 
 
-const createNewTaskObj = function (task) {
-    return { taskText: task, status: 'unchecked' }
+const createNewTaskObj = function (task, id) {
+    return { taskText: task, status: 'unchecked', id: id }
 }
 
 //Task storing in local Storage-3
@@ -149,8 +138,9 @@ document.querySelector('form').addEventListener('submit', (e) => {
     }
     //Here we will get back an empty array or filled array from getTaskArray
     const tasksArr = getTaskArr();
-    const taskObj = createNewTaskObj(inputedTaskText);
+    const taskObj = createNewTaskObj(inputedTaskText, new Date().getTime());
     tasksArr.push(taskObj);
+    console.log(taskObj);
     taskSave(tasksArr);
     inputedTask.value = '';
     taskDisplay();
