@@ -7,9 +7,6 @@ let inputedTask = document.querySelector('input[type="text"]');
 let form = document.querySelector('form');
 let addBtn = document.querySelector('input[type="submit"]');
 let taskListUL = document.querySelector('.task-list>ul');
-// let li = document.querySelector('.task-list>ul li.checked')
-
-
 
 //clear all items
 document.querySelector('.clear-btn').addEventListener('click', () => {
@@ -20,8 +17,6 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
 //delete single items
 const deleteSingleItem = function (deleteBtnImg, obj, id) {
     const taskArr = getTaskArr();
-    console.log(taskArr);
-
     deleteBtnImg.addEventListener('click', (e) => {
         const newArr = taskArr.filter((item) => item.id !== obj.id);
         taskSave(newArr);
@@ -35,9 +30,7 @@ const deleteSingleItem = function (deleteBtnImg, obj, id) {
 
 //toogleTask
 const controlTask = function () {
-    const li = document.querySelector('.task-list>ul li');
     const images = document.querySelectorAll('.uncheck');
-    // console.log(images);
     images.forEach((image) => {
         image.addEventListener('click', (e) => {
             const targetedElement = e.target;
@@ -92,7 +85,6 @@ const taskDisplay = function () {
         li.appendChild(span);
         li.appendChild(deleteImg);
         taskListUL.appendChild(li);
-        console.log(taskObj.id);
         deleteSingleItem(deleteImg, taskObj, taskObj.id);
 
         // Set up event listener to toggle task status when clicked
@@ -115,12 +107,10 @@ const createNewTaskObj = function (task, id) {
 
 //Task storing in local Storage-3
 const taskSave = function (arrOfTaskObj) {
-    // console.log(arrOfTask);
     localStorage.setItem('allTasks', JSON.stringify(arrOfTaskObj));
 }
 // Function to retrieve tasks from local storage-2
 const getTaskArr = function () {
-    // console.log(localStorage.getItem('allTasks'));
     return JSON.parse(localStorage.getItem('allTasks')) || [];
 }
 
@@ -140,7 +130,6 @@ document.querySelector('form').addEventListener('submit', (e) => {
     const tasksArr = getTaskArr();
     const taskObj = createNewTaskObj(inputedTaskText, new Date().getTime());
     tasksArr.push(taskObj);
-    console.log(taskObj);
     taskSave(tasksArr);
     inputedTask.value = '';
     taskDisplay();
